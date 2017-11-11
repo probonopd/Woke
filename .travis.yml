@@ -1,7 +1,9 @@
 language: cpp
+
 before_install:
   - sudo add-apt-repository ppa:beineri/opt-qt591-trusty -y
   - sudo apt-get update
+  
 install:
   - sudo apt-get install qt59base
   - source /opt/qt59/bin/qt59-env.sh
@@ -12,15 +14,17 @@ install:
   - sudo make install
   - sudo ldconfig
   - cd ../
+  
 before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
+  - # "export DISPLAY=:99.0"
+  - # "sh -e /etc/init.d/xvfb start"
+  - # sleep 3 # give xvfb some time to start
+  
 script:
-  - qmake -v
-  - qmake CONFIG+=test
-  - make
-  - ./woke-test
+  - # qmake -v
+  - # qmake CONFIG+=test
+  - # make
+  - # ./woke-test
   - qmake CONFIG+=release PREFIX=/usr
   - make -j$(nproc)
   - make INSTALL_ROOT=appdir -j$(nproc) install ; find appdir/
